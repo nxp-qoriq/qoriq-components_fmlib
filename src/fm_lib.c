@@ -136,7 +136,7 @@ t_Handle GetDeviceId(t_Handle h_Dev)
 {
 	t_Device *p_Dev = (t_Device*)h_Dev;
 
-	return p_Dev->id;
+	return (t_Handle) p_Dev->id;
 }
 
 
@@ -994,7 +994,7 @@ t_Error FM_PCD_CcRootModifyNextEngine(t_Handle                  h_CcTree,
     }
 
 #if (DPAA_VERSION >= 11)
-	if (p_FmPcdCcNextEngineParams->nextEngine == e_IOC_FM_PCD_FR) {
+	if (p_FmPcdCcNextEngineParams->nextEngine == e_FM_PCD_FR) {
         t_Device *p_NextDev = (t_Device*) p_FmPcdCcNextEngineParams->params.frParams.h_FrmReplic;
         params.cc_next_engine_params.params.fr_params.frm_replic_id = UINT_TO_PTR(p_NextDev->id);
     }
@@ -1100,7 +1100,7 @@ t_Error FM_PCD_MatchTableAddKey(t_Handle            h_CcNode,
     	params.key_params.cc_next_engine_params.params.kg_params.p_direct_scheme = UINT_TO_PTR(p_NextDev->id);
     }
 #if (DPAA_VERSION >= 11)
-    else if (p_KeyParams->ccNextEngineParams.nextEngine == e_IOC_FM_PCD_FR) {
+    else if (p_KeyParams->ccNextEngineParams.nextEngine == e_FM_PCD_FR) {
     	t_Device *p_NextDev = (t_Device*) p_KeyParams->ccNextEngineParams.params.frParams.h_FrmReplic;
     	params.key_params.cc_next_engine_params.params.fr_params.frm_replic_id = UINT_TO_PTR(p_NextDev->id);
     }
@@ -1171,7 +1171,7 @@ t_Error FM_PCD_MatchTableModifyKeyAndNextEngine(t_Handle            h_CcNode,
     	params.key_params.cc_next_engine_params.params.kg_params.p_direct_scheme = UINT_TO_PTR(p_NextDev->id);
     }
 #if (DPAA_VERSION >= 11)
-    else if (p_KeyParams->ccNextEngineParams.nextEngine == e_IOC_FM_PCD_FR) {
+    else if (p_KeyParams->ccNextEngineParams.nextEngine == e_FM_PCD_FR) {
     	t_Device *p_NextDev = (t_Device*) p_KeyParams->ccNextEngineParams.params.frParams.h_FrmReplic;
     	params.key_params.cc_next_engine_params.params.fr_params.frm_replic_id = UINT_TO_PTR(p_NextDev->id);
     }
